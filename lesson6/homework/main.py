@@ -5,8 +5,8 @@ from task4 import change_list
 from task5 import to_dict
 from task6 import sum_range
 
-FILL_CHAR = '-'
 FILL_WIDTH = 50
+FILL_CHAR = '-'
 
 if __name__ == "__main__":
     # Task-1
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # Task-5
     print(" Task-5 ".center(FILL_WIDTH, FILL_CHAR))
 
-    inti_list = [1, 2, True, False, 'Hello', 'John']
+    inti_list = [1, 2, True, False, 'Hello']
     result_dict = to_dict(inti_list)
     print(f"List: {inti_list}")
     print(f"Dict: {result_dict}")
@@ -53,6 +53,6 @@ if __name__ == "__main__":
     print(" Task-6 ".center(FILL_WIDTH, FILL_CHAR))
 
     sum_case1 = sum_range(1, 5)
-    print(f"Summa of {sum_case1[1]} = {sum_case1[0]}")
+    print(f"sum_range(1, 5) = {sum_case1}")
     sum_case2 = sum_range(5, 4)
-    print(f"Summa of {sum_case2[1]} = {sum_case2[0]}")
+    print(f"sum_range(5, 4) = {sum_case2}")

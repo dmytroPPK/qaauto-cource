@@ -5,5 +5,3 @@ def square(length):
     plosha = length ** 2
     diagonal = (length ** 2 + length ** 2) ** 0.5
     return perimetr, plosha, diagonal
-
-

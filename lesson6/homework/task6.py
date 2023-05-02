@@ -4,4 +4,4 @@ def sum_range(start, end):
     if start > end:
         start, end = end, start
     list_to_sum = list(range(start, end + 1))
-    return sum(list_to_sum), list_to_sum
+    return sum(list_to_sum)
