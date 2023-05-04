@@ -40,7 +40,7 @@ def count_files_and_folders(path: str, depth: int = 1):
                 exp_dict['dirs'].append(item)
             count += 1
 
-        if json_dict is not None:
+        if bool(json_dict):
             exp_dict['files'].extend(json_dict['files'])
             exp_dict['dirs'].extend(json_dict['dirs'])
     except KeyboardInterrupt:
