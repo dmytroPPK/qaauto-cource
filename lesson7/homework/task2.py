@@ -18,7 +18,7 @@ def count_files_and_folders(path: str, depth: int = 1):
     file_path = os.path.join(DUMPS_DIR, DUMPS_FILE)
     try:
         if not os.path.exists(path):
-            path = '/'
+            path = '/' if os.name == 'posix' else 'C:/'
         if depth < 0:
             depth = 1
 

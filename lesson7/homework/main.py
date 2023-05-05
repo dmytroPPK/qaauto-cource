@@ -10,6 +10,6 @@ if __name__ == '__main__':
     change_csv(OLD_CSV, NEW_CSV, USD_UAH)
 
     # Task-2
-    result = count_files_and_folders("..", 8)
+    result = count_files_and_folders(".", 2)
     for k, v in result.items():
         print(k.capitalize(), ' - ',  v)
