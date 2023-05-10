@@ -43,3 +43,15 @@ class MyComplex:
     def __ge__(self, obj2:'MyComplex'):
         return (self.__real >= obj2.real)  and ( self.__imagine >= obj2.imagine)
 
+
+if __name__ == '__main__':
+    comp1 = MyComplex(10,-5)
+    comp2 = MyComplex(3,5)
+
+    print(f"{comp1} == {comp2} : {comp1 == comp2} ")
+    print(f"{comp1} != {comp2} : {comp1 != comp2} ")
+    print(f"{comp1} > {comp2} : {comp1 > comp2} ")
+    print(f"{comp1} >= {comp2} : {comp1 >= comp2} ")
+    print(f"{comp1} < {comp2} : {comp1 < comp2} ")
+    print(f"{comp1} <= {comp2} : {comp1 <= comp2} ")
+

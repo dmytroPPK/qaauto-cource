@@ -58,10 +58,6 @@ class Square:
             return False
         return True
 
-        # checker = {a,b,c,d}
-        # if len(checker) != 1:
-        #     return False
-        # return True
 
     def calc_area(self):
         if not self.validate(self._p1, self._p2, self._p3, self._p4):

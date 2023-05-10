@@ -1,4 +1,4 @@
-#3. Написать три класса:
+# 3. Написать три класса:
 #
 # 3.1 класс Справочник(Записная книга, Телефонная книга), описывающий взаимодействие с телефонным справочником.
 # Объект этого класса аггрегирует в себе объекты другого класса - Запись(множество записей)
@@ -16,16 +16,15 @@
 from re import match
 from datetime import datetime
 
+
 class Interface:
     def __init__(self):
         self.__book = PhoneBook()
 
-
-
     def run(self):
         while True:
             try:
-                print( "\n" + "Welcome to PhoneBook ".center(35, '-'))
+                print("\n" + "Welcome to PhoneBook ".center(35, '-'))
                 print('Enter "1" to get all records,'
                       ' "2" to add record,'
                       ' "3" to delete record,\n'
@@ -47,7 +46,7 @@ class Interface:
                     print("Program is exited. Bye.")
                     break
                 else:
-                    print("Invalid choice, please try again. Press any key to continue ",end='')
+                    print("Invalid choice, please try again. Press any key to continue ", end='')
                     input()
 
             except IndexError as ie:
@@ -60,19 +59,21 @@ class Interface:
                 exit()
 
     def show_records(self):
-        records = self.__book.get_records()
+        records: ['Record'] = self.__book.get_records()
+        sign = '(S)'
         for i, v in enumerate(records):
-            print(f'\t{i+1}) {str(v)}')
+            sign = sign if v.protected else ''
+            print(f'\t{i + 1}) {str(v)}{sign}')
 
-    def _get_record_byid(self,id:int) -> 'Record':
-        return self.__book.get_records()[id]
+    def _get_record_byid(self, record_id: int) -> 'Record':
+        return self.__book.get_records()[record_id]
 
     def add_record(self):
         name = input('\tType name: ').strip()
         phone = input('\tType phone in format 066-154-54-54: ').strip()
         surname = input('\tType surname: ').strip()
         birthday = input('\tType birthday in format - 2000-12-31: ').strip()
-        new_record = Record(name,phone,surname,birthday)
+        new_record = Record(name, phone, surname, birthday)
         self.__book.add_record(new_record)
         print(f'\tRecord [{str(new_record)}] was added')
 
@@ -80,7 +81,7 @@ class Interface:
         try:
             print('\t... Be considerate, service records cannot be updated')
             index_to_update = int(input("\tEnter id of record to update: ").strip())
-            old_record:'Record' = self._get_record_byid(index_to_update - 1)
+            old_record: 'Record' = self._get_record_byid(index_to_update - 1)
             name = input(f'\tType name [{old_record.name}]: ').strip()
             phone = input(f'\tType phone in format 066-154-54-54 [{old_record.phone}]: ').strip()
             surname = input(f'\tType surname [{old_record.surname}]: ').strip()
@@ -97,7 +98,7 @@ class Interface:
                 print("\tError: Not allowed to update service records")
             else:
                 print(f'\tRecord was updated')
-        except ValueError as ex :
+        except ValueError as ex:
             raise ValueError("It is not an integer value" + str(ex))
 
     def delete_record(self):
@@ -118,15 +119,12 @@ class Interface:
             print('\tNothing to show.')
         else:
             for i, v in enumerate(result):
-                print(f"\t{i+1}) {str(v)}")
-
-
-
+                print(f"\t{i + 1}) {str(v)}")
 
 
 class PhoneBook:
     def __init__(self):
-        self.__records:['Record'] = []
+        self.__records: ['Record'] = []
         self.__add_services()
 
     def __add_services(self):
@@ -138,7 +136,7 @@ class PhoneBook:
         ]
         self.__records += services_list
 
-    def __is_protected(self,id_record) -> bool:
+    def __is_protected(self, id_record) -> bool:
         if id_record >= len(self.__records):
             raise IndexError("Index error of records' list")
         if not self.__records[id_record].protected:
@@ -148,17 +146,16 @@ class PhoneBook:
     def get_records(self) -> ['Record']:
         return self.__records
 
-    def add_record(self, record:'Record'):
+    def add_record(self, record: 'Record'):
         self.__records.append(record)
 
-
-    def del_record(self, id_record:int) -> bool:
+    def del_record(self, id_record: int) -> bool:
         if self.__is_protected(id_record):
             return False
         del self.__records[id_record]
         return True
 
-    def update_record(self, id_record:int, new_record:'Record') -> bool:
+    def update_record(self, id_record: int, new_record: 'Record') -> bool:
         if self.__is_protected(id_record):
             return False
         self.__records[id_record] = new_record
@@ -171,15 +168,14 @@ class PhoneBook:
             if phraze.lower() not in repr(v):
                 continue
             list_ids.append(i)
-        list_result = [self.__records[i] for i in list_ids ]
+        list_result = [self.__records[i] for i in list_ids]
         return list_result
 
 
-
 class Record:
-    def __init__(self, name:str, phone:str, surname:str ='',  birthday:str='', protected:bool = False):
+    def __init__(self, name: str, phone: str, surname: str = '', birthday: str = '', protected: bool = False):
 
-        self._validator(name,phone,surname,birthday,protected)
+        self._validator(name, phone, surname, birthday, protected)
         self.__name = name
         self.__surname = surname
         self.__phone = phone
@@ -196,7 +192,7 @@ class Record:
     @classmethod
     def _birthday_is_valid(cls, birthday: str) -> bool:
         try:
-            date_obj = datetime.strptime(birthday, '%Y-%m-%d')
+            datetime.strptime(birthday, '%Y-%m-%d')
             return True
         except ValueError:
             return False
@@ -205,17 +201,16 @@ class Record:
     def _validator(cls, name, phone, surname, birthday, protected):
         if not name or not phone:
             raise ValueError('name and phone are required')
-        if not isinstance(name,str):
+        if not isinstance(name, str):
             raise ValueError('name must be string type')
-        if not isinstance(surname,str):
+        if not isinstance(surname, str):
             raise ValueError('surname must be string type')
         if not cls._phone_is_valid(phone):
             raise ValueError('Invalid phone format')
         if birthday != '' and not cls._birthday_is_valid(birthday):
             raise ValueError('Invalid birthday format')
-        if not isinstance(protected,bool):
+        if not isinstance(protected, bool):
             raise ValueError("protected field must be bool type")
-
 
     @property
     def name(self):
@@ -239,21 +234,12 @@ class Record:
 
     def __str__(self):
         return f"{self.__name} {self.__phone} {self.__surname} {self.__birthday}"
+
     def __repr__(self):
         str_for_search = f"{self.__name}{self.__surname}{self.__phone}{self.__birthday}"
         return str_for_search.lower()
 
 
 if __name__ == '__main__':
-    # r1 = Record("Bob","LBob","085-355-55-00","1996-01-21",False)
-    # print(r1)
-    # print(repr(r1))
-
     app = Interface()
     app.run()
-
-
-
-
-
-
