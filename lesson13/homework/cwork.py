@@ -112,7 +112,7 @@ class LinkAnalyzer:
             with open('valid_links.txt','a+') as file:
                 file.writelines(links)
         else:
-            with open('wrong_links.txt', 'a+') as file:
+            with open('broken_links.txt', 'a+') as file:
                 file.writelines(links)
 
 
