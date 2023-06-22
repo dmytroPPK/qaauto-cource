@@ -4,7 +4,14 @@ __pycache__/
 *.pdf
 logs.txt
 .env/
+.venv/
+env/
+venv/
 /lesson13/homework/test-1.py
 valid_links.txt
 wrong_links.txt
 broken_links.txt
+old_requirements.txt
+lesson17/old_conftest.py
+lesson17/old_pytest.ini
+lesson17/*.log
