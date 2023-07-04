@@ -18,3 +18,4 @@ lesson17/*.log
 lesson17/allure-report/
 lesson19/allure-report/
 lesson19/tests/test_example.py
+allure-report/
