@@ -19,7 +19,7 @@ class BaseTest:
         wait = Wait(driver, timeout)
         return wait.until(EC.presence_of_element_located(locator))
 
-    def find_elements(self, driver, locator, timeout=10) -> [WebElement]:
+    def find_elements(self, driver, locator, timeout=10) -> [ WebElement ]:
         wait = Wait(driver, timeout)
         return wait.until(EC.presence_of_all_elements_located(locator))
 
