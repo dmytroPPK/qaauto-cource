@@ -14,9 +14,11 @@ class TestElements:
                 "current_addr": "malibu 153",
                 "permanent_addr": "monako 147"
             }
+
+            text_box_page = TexBoxPage(driver, "https://demoqa.com/text-box")
+            text_box_page.open()
+
             with allure.step('fill all fields'):
-                text_box_page = TexBoxPage(driver, "https://demoqa.com/text-box")
-                text_box_page.open()
                 text_box_page.fill_all_fields(form_data)
 
             with allure.step('click on submit button'):
